@@ -5597,6 +5597,7 @@ async def fetchPlaces(city, ptoken=None):
 	myfilecall.close()
 
 	res = gmaps.places_radar(location=[city['lat'], city['lng']], radius=50000, type='university')
+	print(res)
 
 	for r in res['results']:
 		place = gmaps.place(place_id=r['place_id'])
@@ -5605,7 +5606,7 @@ async def fetchPlaces(city, ptoken=None):
 		
 
 async def writeResult(r, city):
-	print(r)
+	# print(r)
 	myfile = open("result.csv", "a")
 	myfile.write(str(city['city'])+";"+str(r['name'])+";"+str(r['geometry']['location']['lat'])+";"+str(r['geometry']['location']['lng'])+";"+str(r['address_components'][3]['long_name'])+";"+str(r['address_components'][4]['long_name'])+"\n")
 	myfile.close()
